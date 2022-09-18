@@ -1,0 +1,33 @@
+afk_indicator.last_updates = {}
+local _lu = afk_indicator.last_updates
+local time = os.time
+
+function afk_indicator.update(name)
+	_lu[name] = time()
+end
+
+function afk_indicator.delete(name)
+	_lu[name] = nil
+end
+
+function afk_indicator.get_all()
+	local now = time()
+	local rt = {}
+	for x,y in pairs(_lu) do
+		rt[x] = now - y
+	end
+	return rt
+end
+
+function afk_indicator.get_all_longer_than(p)
+	local now = time()
+	local rt = {}
+	for x,y in pairs(_lu) do
+		if (now - y) >= p then
+			rt[x] = now - y
+		end
+	end
+	return rt
+end
+
+
