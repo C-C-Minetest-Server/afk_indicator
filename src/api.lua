@@ -3,7 +3,9 @@ local _lu = afk_indicator.last_updates
 local time = os.time
 
 function afk_indicator.update(name)
-	_lu[name] = time()
+	if minetest.get_player_ip(name) then -- Ensure the player is online
+		_lu[name] = time()
+	end
 end
 
 function afk_indicator.delete(name)
