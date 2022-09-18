@@ -12,6 +12,11 @@ INTERNAL: Remove the record of a player. Should only call once when the player l
 
 * `name`: The name of the player
 
+### `afk_indicator.get(name)`
+Get the record of a specific player, return the AFK duration, or `false` if the player is not online.
+
+* `name`: The name of the player
+
 ### `afk_indicator.get_all()`
 Get list of AFK records. It returns a table, with player name as key and AFK duration as value.
 
@@ -24,7 +29,7 @@ Similar to `afk_indicator.get_all()`, but only return records with AFK duration 
 ### `afk_indicator.last_updates`
 A key-value pair of player names and AFK start time.
 
-It's recommended to use `afk_indicator.get_all()`, as it calculate the AFK time for you.
+It's recommended to use `afk_indicator.get_all()` or `afk_indicator.get(name)`, as it calculate the AFK time for you.
 
 ## Chatcommands
 ### `/afk_stat`

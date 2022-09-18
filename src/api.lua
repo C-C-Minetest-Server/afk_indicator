@@ -12,6 +12,13 @@ function afk_indicator.delete(name)
 	_lu[name] = nil
 end
 
+function afk_indicator.get(name)
+	local entry = _lu[name]
+	if not entry then return false end
+	local now = time()
+	return now - entry
+end
+
 function afk_indicator.get_all()
 	local now = time()
 	local rt = {}
