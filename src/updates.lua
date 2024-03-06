@@ -11,29 +11,29 @@ minetest.register_on_leaveplayer(function(player)
 	old_pos[name] = nil
 end)
 
-minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
-	if placer:is_player() then
-		local name = placer:get_player_name()
+minetest.register_on_placenode(function(pos, newnode, player, oldnode, itemstack, pointed_thing)
+	if player:is_player() and not player.is_fake_player then
+		local name = player:get_player_name()
 		afk_indicator.update(name)
 	end
 end)
 
-minetest.register_on_dignode(function(pos, oldnode, digger)
-	if digger:is_player() then
-		local name = digger:get_player_name()
+minetest.register_on_dignode(function(pos, oldnode, player)
+	if player:is_player() and not player.is_fake_player then
+		local name = player:get_player_name()
 		afk_indicator.update(name)
 	end
 end)
 
-minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
-	if puncher:is_player() then
-		local name = puncher:get_player_name()
+minetest.register_on_punchnode(function(pos, node, player, pointed_thing)
+	if player:is_player() and not player.is_fake_player then
+		local name = player:get_player_name()
 		afk_indicator.update(name)
 	end
 end)
 
 minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv)
-	if player:is_player() then
+	if player:is_player() and not player.is_fake_player then
 		local name = player:get_player_name()
 		afk_indicator.update(name)
 	end
@@ -44,9 +44,9 @@ minetest.register_on_player_inventory_action(function(player, action, inventory,
 	afk_indicator.update(name)
 end)
 
-minetest.register_on_item_eat(function(hp_change, replace_with_item, itemstack, user, pointed_thing)
-	if user:is_player() then
-		local name = user:get_player_name()
+minetest.register_on_item_eat(function(hp_change, replace_with_item, itemstack, player, pointed_thing)
+	if player:is_player() and not player.is_fake_player then
+		local name = player:get_player_name()
 		afk_indicator.update(name)
 	end
 end)
