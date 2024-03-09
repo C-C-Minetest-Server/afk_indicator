@@ -12,7 +12,7 @@ minetest.register_on_leaveplayer(function(player)
 end)
 
 minetest.register_on_placenode(function(pos, newnode, player, oldnode, itemstack, pointed_thing)
-	if player:is_player() and not player.is_fake_player then
+	if player and player:is_player() and not player.is_fake_player then
 		local name = player:get_player_name()
 		afk_indicator.update(name)
 	end
@@ -26,14 +26,14 @@ minetest.register_on_dignode(function(pos, oldnode, player)
 end)
 
 minetest.register_on_punchnode(function(pos, node, player, pointed_thing)
-	if player:is_player() and not player.is_fake_player then
+	if player and player:is_player() and not player.is_fake_player then
 		local name = player:get_player_name()
 		afk_indicator.update(name)
 	end
 end)
 
 minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv)
-	if player:is_player() and not player.is_fake_player then
+	if player and player:is_player() and not player.is_fake_player then
 		local name = player:get_player_name()
 		afk_indicator.update(name)
 	end
@@ -45,7 +45,7 @@ minetest.register_on_player_inventory_action(function(player, action, inventory,
 end)
 
 minetest.register_on_item_eat(function(hp_change, replace_with_item, itemstack, player, pointed_thing)
-	if player:is_player() and not player.is_fake_player then
+	if player and player:is_player() and not player.is_fake_player then
 		local name = player:get_player_name()
 		afk_indicator.update(name)
 	end
