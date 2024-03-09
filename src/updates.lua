@@ -19,7 +19,7 @@ minetest.register_on_placenode(function(pos, newnode, player, oldnode, itemstack
 end)
 
 minetest.register_on_dignode(function(pos, oldnode, player)
-	if player:is_player() and not player.is_fake_player then
+	if player and player:is_player() and not player.is_fake_player then
 		local name = player:get_player_name()
 		afk_indicator.update(name)
 	end
