@@ -77,5 +77,5 @@ local function loop()
 	end
 	minetest.after(1,loop)
 end
-loop()
 
+minetest.after(0, loop)
